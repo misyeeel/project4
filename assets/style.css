@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    font-family: 'SimpsonFont', sans-serif;
+    color: #000;
+}
+
+.hero {
+    height: 100vh;
+    padding-top: 120px;
+    background: url('background.jpg');
+    background-size: cover;
+    background-position: c enter;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #ffd90f;
+}
+
+.navbar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    z-index: 10;
+}
+
+.nav-link {
+    color: #000;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #333;
+}
+
+.hero {
+    min-height: 100vh;
+    padding-top: 120px;
+    color: #ffd90f;
+}
+
+.hero p {
+    color: #ffffff;
+}
+
+.simpsons-font {
+    font-family: 'SimpsonFont', sans-serif;
+    letter-spacing: 3px;
+}
