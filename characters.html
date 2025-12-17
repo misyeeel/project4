@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Simpsons | Characters</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body class="bg-dark text-white">
+
+    <!-- NAVBAR -->
+    <nav class="navbar fixed-top shadow-sm px-4 py-2 mt-3" style="background-color: #ffd90f;">
+        <div class="container-fluid justify-content-center">
+            <ul class="navbar-nav d-flex flex-row gap-4">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Back to Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- CHARACTERS -->
+    <div class="container text-center">
+        <div class="container pt-5 mt-5">
+            <h1 class="fw-bold mb-4">Characters</h1>
+        </div>
+
+        <div class="row" id="characters">
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center my-4">
+            <button id="prevBtn" class="btn btn-warning">Previous</button>
+            <span id="pageInfo"></span>
+            <button id="nextBtn" class="btn btn-warning">Next</button>
+        </div>
+    </div>
+
+    <!-- CHARACTER DETAILS MODAL -->
+    <div class="modal fade" id="characterModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-5">
+                <div class="modal-body text-center" id="modalBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var contents = document.getElementById("characters");
+        var pageInfo = document.getElementById("pageInfo");
+        var prevBtn = document.getElementById("prevBtn");
+        var nextBtn = document.getElementById("nextBtn");
+        var modalBody = document.getElementById("modalBody");
+
+        var currentPage = 1;
+        var totalPages = 1;
+
+        const getCharacters = async () => {
+            const response = await fetch(
+                "https://thesimpsonsapi.com/api/characters?page=" + currentPage
+            );
+            const result = await response.json();
+
+            totalPages = result.pages;
+            pageInfo.innerHTML = "Page " + currentPage + " of " + totalPages;
+
+            contents.innerHTML = "";
+
+            for (var i = 0; i < result.results.length; i++) {
+                var character = result.results[i];
+
+                var imageURL;
+                if (character.portrait_path) {
+                    imageURL = "https://cdn.thesimpsonsapi.com/500" + character.portrait_path;
+                } else {
+                    imageURL = "https://via.placeholder.com/200";
+                }
+
+                contents.innerHTML += `
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card my-3 p-5 rounded-5 text-center character-card"
+                             onclick="getCharacterDetails(` + character.id + `)">
+
+                            <div class="mx-auto" style="width:200px;height:200px;">
+                                <img src="` + imageURL + `" class="w-100 h-100"
+                                     style="object-fit:contain;">
+                            </div>
+
+                            <div class="my-3 h4">` + character.name + `</div>
+
+                            <p class="text-muted"
+                               style="font-family: Arial, sans-serif;">
+                               Click to view details
+                            </p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+        };
+
+        const getCharacterDetails = async (id) => {
+            const response = await fetch(
+                "https://thesimpsonsapi.com/api/characters/" + id
+            );
+            const character = await response.json();
+
+            var imageURL;
+            if (character.portrait_path) {
+                imageURL = "https://cdn.thesimpsonsapi.com/500" + character.portrait_path;
+            } else {
+                imageURL = "https://via.placeholder.com/300";
+            }
+
+            modalBody.innerHTML = `
+                <div class="d-flex flex-column align-items-center text-center">
+
+                    <h3 class="fw-bold mb-3">` + character.name + `</h3>
+
+                    <img src="` + imageURL + `"
+                         class="img-fluid mb-4 rounded-4"
+                         style="max-height:300px;">
+
+                    <p class="mb-3">
+                        ` + (character.description || "No description available.") + `
+                    </p>
+
+                    <p><strong>Age:</strong> ` + (character.age || "Unknown") + `</p>
+                    <p><strong>Status:</strong> ` + (character.status || "Unknown") + `</p>
+                    <p><strong>Occupation:</strong> ` + (character.occupation || "Unknown") + `</p>
+
+                </div>
+            `;
+
+            var modal = new bootstrap.Modal(
+                document.getElementById("characterModal")
+            );
+            modal.show();
+        };
+
+        prevBtn.onclick = function () {
+            if (currentPage > 1) {
+                currentPage--;
+                getCharacters();
+            }
+        };
+
+        nextBtn.onclick = function () {
+            if (currentPage < totalPages) {
+                currentPage++;
+                getCharacters();
+            }
+        };
+
+        getCharacters();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>
