@@ -5,14 +5,14 @@ body {
 }
 
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     padding-top: 120px;
-    background: url('background.jpg');
-    background-size: cover;
-    background-position: c enter;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: url('background.jpg') center center / cover no-repeat fixed;
     color: #ffd90f;
+}
+
+.hero p {
+    color: #ffffff;
 }
 
 .navbar {
@@ -29,16 +29,6 @@ body {
 
 .nav-link:hover {
     color: #333;
-}
-
-.hero {
-    min-height: 100vh;
-    padding-top: 120px;
-    color: #ffd90f;
-}
-
-.hero p {
-    color: #ffffff;
 }
 
 .simpsons-font {
@@ -58,23 +48,66 @@ body {
 
 .about-section {
     min-height: 20vh;
-    background-image: url('about.jpg');
-    background-size: cover;       
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url('about.jpg') center center / cover no-repeat;
     text-shadow: 1px 1px 2px rgba(253, 255, 235, 0.8);
-
 }
 
 .character-card {
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    height: 350px;
+    padding: 1.5rem;
 }
 
 .character-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 0 10px #ffd90f, 0 0 20px #ffd90f, 0 0 30px #ffd90f;
 }
+
+.image-card-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.image-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    transition: transform 0.4s ease;
+}
+
+.character-card:hover .image-card {
+    transform: translateX(14px) rotate(3deg);
+    box-shadow: 0 10px 25px #ffd90f;
+}
+
+.character-img {
+    height: 150px;
+    width: auto;
+    display: block;
+}
+
+.info-pill, .status-badge {
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.info-pill {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.status-badge.alive { background-color: #4caf50; color: white; }
+.status-badge.dead { background-color: #f44336; color: white; }
+.status-badge.unknown { background-color: #9e9e9e; color: white; }
 
 #characterModal {
     font-family: Arial, sans-serif;
