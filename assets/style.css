@@ -4,52 +4,28 @@ body {
     color: #000;
 }
 
-.hero {
-    min-height: 100vh;
-    padding-top: 120px;
-    background: url('background.jpg') center center / cover no-repeat fixed;
-    color: #ffd90f;
+.hero-bg {
+    background: url('background.jpg') center/cover no-repeat fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.hero p {
-    color: #ffffff;
-}
-
-.navbar {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px) saturate(180%);
-    z-index: 10;
-}
-
-.nav-link {
-    color: #000;
-    font-weight: 500;
-}
-
-.nav-link:hover {
-    color: #333;
-}
-
-.simpsons-font {
-    font-family: 'SimpsonFont', sans-serif;
-    letter-spacing: 3px;
+.hero-logo {
+    margin-top: 8rem;
 }
 
 .btn-warning {
     background-color: #ffd90f;
-    border: none;
+        border: 2px solid #ffd90f;
     color: #000;
 }
 
 .btn-warning:hover {
-    background-color: #ffce00;
-}
-
-.about-section {
-    min-height: 20vh;
-    background: url('about.jpg') center center / cover no-repeat;
-    text-shadow: 1px 1px 2px rgba(253, 255, 235, 0.8);
+    background-color: transparent;
+    border: 2px solid #ffd90f;
+    color: #ffd90f;
 }
 
 .character-card {
