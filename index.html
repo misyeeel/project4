@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Simpsons</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css">
@@ -12,25 +13,23 @@
 
 <body>
 
-    <div class="d-flex flex-column vh-100 text-center hero-bg text-warning">
+    <div class="hero-bg">
+        <video autoplay muted loop class="video-bg">
+            <source src="assets/background.mp4" type="video/mp4">
+        </video>
 
-        <img src="assets/logo.png" alt="The Simpsons" class="img-fluid hero-logo d-block mx-auto"
-            style="max-width: 900px; width: 90%; margin-top: 6rem;">
-
-        <p class="text-white fs-6 mx-3 mx-md-0" style="max-width: 800px; margin-top: 2rem;">
-            The Simpsons is an iconic animated television series created by Matt Groening.
-            It follows the daily lives of Homer, Marge, Bart, Lisa, and Maggie in the fictional town of Springfield.
-            This page will only showcase the characters.
-        </p>
-
-
-        <div class="mb-5">
-            <a href="characters.html" class="btn btn-warning btn-lg rounded-pill px-4 text-black">
+        <div class="hero-content text-center">
+            <img src="assets/logo.png" alt="Logo" class="img-fluid hero-logo">
+            <p class="hero-text text-center mx-auto mb-5 px-3 col-12 col-md-8 col-lg-6">
+                The Simpsons is an iconic animated television series created by Matt Groening, centered on the daily
+                lives of the Simpson family—Homer, Marge, Bart, Lisa, and Maggie—in the fictional town of Springfield.
+                This page is dedicated to showcasing its characters. </p>
+            <a href="characters.html" class="btn btn-outline-warning btn-lg rounded-pill px-4">
                 Explore Characters
             </a>
         </div>
-
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
